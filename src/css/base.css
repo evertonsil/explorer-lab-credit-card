@@ -15,11 +15,21 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
+
+  --base-body-bg: #121214;
+  --base-app-bg: #202024;
+  --base-app-border: #323238;
+}
+
+.light-mode:root {
+  --base-body-bg: #ededeb;
+  --base-app-bg: #dfdfdb;
+  --base-app-border: #cdcdc7;
 }
 
 body {
   font-size: 1.6rem;
-  background: #121214;
+  background: var(--base-body-bg);
 
   display: flex;
   place-items: center;
@@ -41,8 +51,8 @@ body {
   margin: 0 auto;
 
   padding: 2.8rem 6rem 4rem;
-  background: #202024;
-  border: 0.1rem solid #323238;
+  background: var(--base-app-bg);
+  border: 0.1rem solid var(--base-app-border);
   border-radius: 0.6rem;
 }
 

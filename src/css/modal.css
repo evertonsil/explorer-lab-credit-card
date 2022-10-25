@@ -1,0 +1,65 @@
+:root {
+  --dialog-bg: #202024;
+  --dialog-btn-color: #8714fa;
+  --dialog-text-color: #e1e1e6;
+  --dialog-border: #323238;
+}
+
+dialog::backdrop {
+  backdrop-filter: blur(5px);
+  animation: fadein 0.5s forwards;
+}
+
+dialog {
+  background-color: var(--dialog-bg);
+  border-color: var (--dialog-border);
+  border-radius: 0.6rem;
+  color: var(--dialog-text-color);
+  padding: 4rem;
+  text-align: center;
+}
+
+dialog[open] {
+  opacity: 1;
+  animation: fadein 1s forwards;
+}
+
+dialog.hide {
+  animation: fadeout 1s forwards;
+}
+
+@keyframes fadein {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeout {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+dialog button {
+  background-color: var(--dialog-btn-color);
+  padding: 15px 50px 15px 50px;
+  margin-top: 4rem;
+  border-radius: 0.6rem;
+  border: none;
+  font-weight: 700;
+  font-size: 1.4rem;
+  line-height: 1.7rem;
+  transition: filter 0.3s;
+  color: var(--dialog-text-color);
+  cursor: pointer;
+}
+
+dialog button:hover {
+  filter: brightness(1.1);
+}

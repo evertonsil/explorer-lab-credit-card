@@ -88,17 +88,31 @@ const cardNumberPattern = {
       return number.match(item.regex)
     })
 
-    console.log(foundMask)
-
     return foundMask
   },
 }
 
 const cardNumberMasked = IMask(cardNumber, cardNumberPattern)
 
-const addButton = document.querySelector("#addButton")
-addButton.addEventListener("click", () => {
-  alert("Cartão adicionado com sucesso!")
+const submitForm = document.querySelector("form")
+const modal = document.querySelector("dialog")
+const btnClose = document.querySelector("dialog button")
+
+submitForm.addEventListener("submit", () => {
+  modal.showModal()
+})
+
+btnClose.addEventListener("click", () => {
+  modal.classList.add("hide")
+  modal.addEventListener(
+    "webkitAnimationEnd",
+    function () {
+      modal.classList.remove("hide")
+      modal.close()
+      modal.removeEventListener("webkitAnimationEnd", arguments.callee, false)
+    },
+    false
+  )
 })
 
 //previnir refresh do form
@@ -125,7 +139,6 @@ function updateSecurityCode(code) {
 
 cardNumberMasked.on("accept", () => {
   const cardBrand = cardNumberMasked.masked.currentMask.cardtype
-  console.log(cardBrand)
   setCardBrand(cardBrand)
   updateCardNumber(cardNumberMasked.masked.currentMask.value)
 })
@@ -143,3 +156,14 @@ function updateExpirationDate(date) {
   const ccExpiration = document.querySelector(".cc-expiration .value")
   ccExpiration.innerText = date !== "" ? date : "02/32"
 }
+
+const modalButton = document.querySelector("dialog button")
+modalButton.addEventListener("click", () => {
+  cardNumber.value = ""
+  cardHolder.value = ""
+  expirationDate.value = ""
+  securityCode.value = ""
+  updateCardNumber("")
+  updateExpirationDate("")
+  updateSecurityCode("")
+})
